@@ -2,6 +2,10 @@
 .ipynb_checkpoints/
 */.ipynb_checkpoints/*
 
+# Jupyter Notebook trash
+.Trash-*/
+**/.Trash-*/
+
 # Python cache
 __pycache__/
 *.py[cod]
