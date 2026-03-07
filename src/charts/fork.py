@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def plot_fork_geometry(rake_deg=25, offset_mm=30, wheel_radius_mm=315):
     """
     Plots the steering geometry of a motorcycle front end.
@@ -12,47 +13,36 @@ def plot_fork_geometry(rake_deg=25, offset_mm=30, wheel_radius_mm=315):
     offset = offset_mm / 1000.0
     R = wheel_radius_mm / 1000.0
 
-    # 1. Calculate Trail (Standard Mechanical Trail Formula)
-    # Trail = (R * sin(rake) - offset) / cos(rake)
     trail = (R * np.sin(rake_rad) - offset) / np.cos(rake_rad)
-    
-    # 2. Coordinates
+
     axle = np.array([0, R])
-    contact_patch = np.array([0, 0])
-    x_pivot_ground = -trail  # Intersection of steering axis and ground
-    
-    # 3. Create Plot
+    x_pivot_ground = -trail
+
     plt.figure(figsize=(10, 6))
     ax = plt.gca()
 
-    # Draw Wheel
     wheel = plt.Circle(axle, R, color='gray', fill=False, lw=2, label='Front Wheel')
     ax.add_patch(wheel)
-    plt.plot(0, R, 'ko') # Axle
+    plt.plot(0, R, 'ko')
 
-    # Draw Ground
     plt.axhline(0, color='black', lw=2)
 
-    # Draw Steering Axis (Red Dashed Line)
     y_top = R * 2.2
     x_top = x_pivot_ground + y_top * np.tan(rake_rad)
     plt.plot([x_pivot_ground, x_top], [0, y_top], 'r--', lw=1.5, label='Steering Axis')
 
-    # Draw Fork (Blue Solid Line)
     fork_y_top = R * 2.1
     fork_x_top = (fork_y_top - R) * np.tan(rake_rad)
     plt.plot([0, fork_x_top], [R, fork_y_top], 'b-', lw=3, label='Fork Tubes')
 
-    # Highlight Trail (Distance on ground)
     plt.annotate('', xy=(x_pivot_ground, -0.02), xytext=(0, -0.02),
                  arrowprops=dict(arrowstyle='<->', color='green', lw=2))
-    plt.text(x_pivot_ground/2, -0.07, f'TRAIL: {trail*1000:.1f} mm', 
+    plt.text(x_pivot_ground / 2, -0.07, f'TRAIL: {trail * 1000:.1f} mm',
              color='green', fontweight='bold', ha='center')
 
-    # Labels
     plt.plot(0, 0, 'go', label='Contact Patch')
     plt.plot(x_pivot_ground, 0, 'ro', label='Pivot Point')
-    
+
     plt.title(f"Motorcycle Geometry: {rake_deg}° Rake, {offset_mm}mm Offset")
     plt.xlabel("Horizontal Distance (m)")
     plt.ylabel("Height (m)")
@@ -60,5 +50,3 @@ def plot_fork_geometry(rake_deg=25, offset_mm=30, wheel_radius_mm=315):
     plt.grid(True, linestyle=':', alpha=0.5)
     plt.axis('equal')
     plt.show()
-
-# Run the function
