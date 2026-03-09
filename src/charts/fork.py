@@ -37,8 +37,8 @@ def plot_fork_geometry(rake_deg=25, offset_mm=30, wheel_radius_mm=315):
 
     plt.annotate('', xy=(x_pivot_ground, -0.02), xytext=(0, -0.02),
                  arrowprops=dict(arrowstyle='<->', color='green', lw=2))
-    plt.text(x_pivot_ground / 2, -0.07, f'TRAIL: {trail * 1000:.1f} mm',
-             color='green', fontweight='bold', ha='center')
+    plt.text(x_pivot_ground / 2, 0.04, f'TRAIL: {trail * 1000:.1f} mm',
+             color='green', fontweight='bold', ha='center', fontsize=10)
 
     plt.plot(0, 0, 'go', label='Contact Patch')
     plt.plot(x_pivot_ground, 0, 'ro', label='Pivot Point')
