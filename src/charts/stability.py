@@ -10,6 +10,8 @@ def plot_eigenvalue_vs_speed(I_steer=0.6, c0=12.0, c1=0.07, k0=80.0, k1=0.002):
     Simplified model:
         c_eff(v) = c0 - c1 * v^2   (damping decreases with speed)
         k_eff(v) = k0 + k1 * v^2   (stiffness mildly increases with speed)
+        
+    Not used in main notebook
     """
     speeds_kmh = np.linspace(0, 300, 500)
     speeds_ms = speeds_kmh / 3.6

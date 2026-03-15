@@ -9,6 +9,8 @@ def plot_caster_response(configs=None):
 
     configs: optional list of dicts with keys:
         label, trail_mm, zeta (damping ratio), omega (natural freq Hz), color
+
+    Not used in main notebook
     """
     if configs is None:
         configs = [
